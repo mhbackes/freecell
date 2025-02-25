@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2gt72ppc00lt"]
+
+[ext_resource type="Script" path="res://scripts/view_2d/card_pile_2d.gd" id="1_1hxgo"]
+[ext_resource type="Texture2D" uid="uid://5aw7uxph3pvl" path="res://assets/textures/cards/anglo_poker.svg" id="2_264qu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vqpl"]
+atlas = ExtResource("2_264qu")
+region = Rect2(723, 1347.8, 241, 337)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8lgh"]
+size = Vector2(640, 900)
+
+[node name="CardPile2D" type="StaticBody2D"]
+script = ExtResource("1_1hxgo")
+
+[node name="Highlight" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 1, 0, 0.2)
+position = Vector2(3.63588e-06, -5.26841e-05)
+scale = Vector2(2.671, 2.671)
+texture = SubResource("AtlasTexture_8vqpl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i8lgh")

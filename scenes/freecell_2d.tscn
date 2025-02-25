@@ -1,0 +1,276 @@
+[gd_scene load_steps=20 format=3 uid="uid://dyfl4b041pelp"]
+
+[ext_resource type="Script" path="res://scripts/view_2d/freecell_2d.gd" id="1_pmwy7"]
+[ext_resource type="Texture2D" uid="uid://cd71356p40e41" path="res://assets/textures/ui/plus.png" id="2_tff4g"]
+[ext_resource type="Script" path="res://scripts/long_press_button.gd" id="3_8i2fu"]
+[ext_resource type="Texture2D" uid="uid://dpi1mpku40u5k" path="res://assets/textures/ui/rewind.png" id="3_tsxa6"]
+[ext_resource type="AudioStream" uid="uid://b38058w8hfc8a" path="res://assets/sounds/ui/Modern3.ogg" id="4_cbl04"]
+[ext_resource type="Texture2D" uid="uid://ds33kc7grt2vc" path="res://assets/textures/ui/left.png" id="5_oxily"]
+[ext_resource type="Texture2D" uid="uid://42hap886pswg" path="res://assets/textures/ui/right.png" id="6_womye"]
+[ext_resource type="AudioStream" uid="uid://dntonf4s7f0s5" path="res://assets/sounds/ui/Modern4.ogg" id="7_3fkrd"]
+[ext_resource type="Texture2D" uid="uid://chjxmjmj3ixk3" path="res://assets/textures/ui/fastForward.png" id="8_i6q48"]
+[ext_resource type="Texture2D" uid="uid://l5k5ti6n7kf2" path="res://assets/textures/ui/gear.png" id="9_1uh5b"]
+[ext_resource type="PackedScene" uid="uid://b6kjw4x668twt" path="res://scenes/cell_2d.tscn" id="10_v45on"]
+[ext_resource type="PackedScene" uid="uid://d0h1dr07gryxx" path="res://scenes/foundation_2d.tscn" id="11_bsqna"]
+[ext_resource type="PackedScene" uid="uid://bucr21o3na66x" path="res://scenes/cascade_2d.tscn" id="12_dmnlt"]
+[ext_resource type="AudioStream" uid="uid://b8h8lscii48ns" path="res://assets/sounds/cards/card-fan-2.ogg" id="13_g6556"]
+[ext_resource type="AudioStream" uid="uid://dhjma3m6ug1os" path="res://assets/sounds/tada-fanfare-a-6313.mp3" id="14_afydu"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_d6awm"]
+action = &"ui_undo"
+
+[sub_resource type="Shortcut" id="Shortcut_w8w44"]
+events = [SubResource("InputEventAction_d6awm")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_esum5"]
+action = &"ui_redo"
+
+[sub_resource type="Shortcut" id="Shortcut_u15g7"]
+events = [SubResource("InputEventAction_esum5")]
+
+[node name="Freecell2DNew" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_pmwy7")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 422.0
+grow_horizontal = 2
+mouse_filter = 2
+ratio = 1.3333
+
+[node name="VSplitContainer" type="VSplitContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+mouse_filter = 2
+dragger_visibility = 1
+
+[node name="HUD" type="Panel" parent="AspectRatioContainer/VSplitContainer"]
+z_index = 1000
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Buttons" type="HBoxContainer" parent="AspectRatioContainer/VSplitContainer/HUD"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -54.0
+offset_right = 54.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NewGame" type="Button" parent="AspectRatioContainer/VSplitContainer/HUD/Buttons"]
+layout_mode = 2
+focus_mode = 0
+icon = ExtResource("2_tff4g")
+icon_alignment = 1
+script = ExtResource("3_8i2fu")
+
+[node name="UndoAll" type="Button" parent="AspectRatioContainer/VSplitContainer/HUD/Buttons"]
+layout_mode = 2
+focus_mode = 0
+disabled = true
+icon = ExtResource("3_tsxa6")
+icon_alignment = 1
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="AspectRatioContainer/VSplitContainer/HUD/Buttons/UndoAll"]
+stream = ExtResource("4_cbl04")
+volume_db = 15.0
+pitch_scale = 0.75
+
+[node name="Undo" type="Button" parent="AspectRatioContainer/VSplitContainer/HUD/Buttons"]
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+disabled = true
+shortcut = SubResource("Shortcut_w8w44")
+icon = ExtResource("5_oxily")
+icon_alignment = 1
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="AspectRatioContainer/VSplitContainer/HUD/Buttons/Undo"]
+stream = ExtResource("4_cbl04")
+volume_db = 15.0
+
+[node name="Redo" type="Button" parent="AspectRatioContainer/VSplitContainer/HUD/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+disabled = true
+shortcut = SubResource("Shortcut_u15g7")
+icon = ExtResource("6_womye")
+icon_alignment = 1
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="AspectRatioContainer/VSplitContainer/HUD/Buttons/Redo"]
+stream = ExtResource("7_3fkrd")
+volume_db = 15.0
+
+[node name="RedoAll" type="Button" parent="AspectRatioContainer/VSplitContainer/HUD/Buttons"]
+layout_mode = 2
+focus_mode = 0
+disabled = true
+icon = ExtResource("8_i6q48")
+icon_alignment = 1
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="AspectRatioContainer/VSplitContainer/HUD/Buttons/RedoAll"]
+stream = ExtResource("7_3fkrd")
+volume_db = 15.0
+pitch_scale = 1.5
+
+[node name="Options" type="Button" parent="AspectRatioContainer/VSplitContainer/HUD/Buttons"]
+layout_mode = 2
+focus_mode = 0
+icon = ExtResource("9_1uh5b")
+
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/VSplitContainer"]
+custom_minimum_size = Vector2(1200, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VSplitContainer" parent="AspectRatioContainer/VSplitContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+split_offset = -200
+dragger_visibility = 1
+
+[node name="CellsAndFoundations" type="HBoxContainer" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="CellsMargin" type="MarginContainer" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CellsAndFoundations"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 25
+
+[node name="Cells" type="HBoxContainer" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CellsAndFoundations/CellsMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Cell2D1" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CellsAndFoundations/CellsMargin/Cells" instance=ExtResource("10_v45on")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cell2D2" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CellsAndFoundations/CellsMargin/Cells" instance=ExtResource("10_v45on")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cell2D3" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CellsAndFoundations/CellsMargin/Cells" instance=ExtResource("10_v45on")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cell2D4" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CellsAndFoundations/CellsMargin/Cells" instance=ExtResource("10_v45on")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="FoundationsMargin" type="MarginContainer" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CellsAndFoundations"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 0
+
+[node name="Foundations" type="HBoxContainer" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CellsAndFoundations/FoundationsMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Foundation2D1" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CellsAndFoundations/FoundationsMargin/Foundations" instance=ExtResource("11_bsqna")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Foundation2D2" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CellsAndFoundations/FoundationsMargin/Foundations" instance=ExtResource("11_bsqna")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Foundation2D3" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CellsAndFoundations/FoundationsMargin/Foundations" instance=ExtResource("11_bsqna")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Foundation2D4" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CellsAndFoundations/FoundationsMargin/Foundations" instance=ExtResource("11_bsqna")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CascadesMargin" type="MarginContainer" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 0
+
+[node name="Cascades" type="HBoxContainer" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CascadesMargin"]
+layout_mode = 2
+size_flags_vertical = 2
+mouse_filter = 2
+
+[node name="Cascade2D1" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CascadesMargin/Cascades" instance=ExtResource("12_dmnlt")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cascade2D2" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CascadesMargin/Cascades" instance=ExtResource("12_dmnlt")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cascade2D3" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CascadesMargin/Cascades" instance=ExtResource("12_dmnlt")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cascade2D4" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CascadesMargin/Cascades" instance=ExtResource("12_dmnlt")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cascade2D5" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CascadesMargin/Cascades" instance=ExtResource("12_dmnlt")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cascade2D6" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CascadesMargin/Cascades" instance=ExtResource("12_dmnlt")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cascade2D7" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CascadesMargin/Cascades" instance=ExtResource("12_dmnlt")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cascade2D8" parent="AspectRatioContainer/VSplitContainer/MarginContainer/VBoxContainer/CascadesMargin/Cascades" instance=ExtResource("12_dmnlt")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DealSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_g6556")
+volume_db = 10.0
+
+[node name="VictorySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_afydu")
+
+[connection signal="button_down" from="AspectRatioContainer/VSplitContainer/HUD/Buttons/NewGame" to="AspectRatioContainer/VSplitContainer/HUD/Buttons/NewGame" method="_on_button_down"]
+[connection signal="button_up" from="AspectRatioContainer/VSplitContainer/HUD/Buttons/NewGame" to="AspectRatioContainer/VSplitContainer/HUD/Buttons/NewGame" method="_on_button_up"]
+[connection signal="long_pressed" from="AspectRatioContainer/VSplitContainer/HUD/Buttons/NewGame" to="." method="new_game"]
+[connection signal="pressed" from="AspectRatioContainer/VSplitContainer/HUD/Buttons/UndoAll" to="." method="undo_all"]
+[connection signal="pressed" from="AspectRatioContainer/VSplitContainer/HUD/Buttons/UndoAll" to="AspectRatioContainer/VSplitContainer/HUD/Buttons/UndoAll/Sound" method="play" binds= [0.0]]
+[connection signal="pressed" from="AspectRatioContainer/VSplitContainer/HUD/Buttons/Undo" to="." method="undo"]
+[connection signal="pressed" from="AspectRatioContainer/VSplitContainer/HUD/Buttons/Undo" to="AspectRatioContainer/VSplitContainer/HUD/Buttons/Undo/Sound" method="play" binds= [0.0]]
+[connection signal="pressed" from="AspectRatioContainer/VSplitContainer/HUD/Buttons/Redo" to="." method="redo"]
+[connection signal="pressed" from="AspectRatioContainer/VSplitContainer/HUD/Buttons/Redo" to="AspectRatioContainer/VSplitContainer/HUD/Buttons/Redo/Sound" method="play" binds= [0.0]]
+[connection signal="pressed" from="AspectRatioContainer/VSplitContainer/HUD/Buttons/RedoAll" to="." method="redo_all"]
+[connection signal="pressed" from="AspectRatioContainer/VSplitContainer/HUD/Buttons/RedoAll" to="AspectRatioContainer/VSplitContainer/HUD/Buttons/RedoAll/Sound" method="play" binds= [0.0]]

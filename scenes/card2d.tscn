@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://cg381elc0gqxw"]
+
+[ext_resource type="Script" path="res://scripts/view_2d/card_2d.gd" id="1_n1is6"]
+[ext_resource type="Texture2D" uid="uid://5aw7uxph3pvl" path="res://assets/textures/cards/anglo_poker.svg" id="2_s3v2d"]
+[ext_resource type="AudioStream" uid="uid://dasdw5s2im51t" path="res://assets/sounds/cards/card-slide-8.ogg" id="4_g730b"]
+[ext_resource type="AudioStream" uid="uid://cjgu6jg8wk6xj" path="res://assets/sounds/cards/card-place-1.ogg" id="4_tm40h"]
+[ext_resource type="AudioStream" uid="uid://dac3imsgwiv23" path="res://assets/sounds/cards/card-place-2.ogg" id="5_g8ok5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctuf4"]
+resource_local_to_scene = true
+atlas = ExtResource("2_s3v2d")
+region = Rect2(0, -0.2, 241, 337)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpwh3"]
+size = Vector2(643.62, 900)
+
+[node name="Card2D" type="Area2D"]
+script = ExtResource("1_n1is6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.671, 2.671)
+texture = SubResource("AtlasTexture_ctuf4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hpwh3")
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_tm40h")
+
+[node name="DropSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_g8ok5")
+
+[node name="SlideSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_g730b")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

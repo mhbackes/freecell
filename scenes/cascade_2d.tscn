@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bucr21o3na66x"]
+
+[ext_resource type="Texture2D" uid="uid://5aw7uxph3pvl" path="res://assets/textures/cards/anglo_poker.svg" id="2_00yr0"]
+[ext_resource type="Script" path="res://scripts/view_2d/cascade_2d.gd" id="2_85tfr"]
+[ext_resource type="PackedScene" uid="uid://c2gt72ppc00lt" path="res://scenes/card_pile_2d.tscn" id="3_xo5s0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34016"]
+resource_local_to_scene = true
+atlas = ExtResource("2_00yr0")
+region = Rect2(723, 1347.8, 241, 337)
+
+[node name="Cascade" type="Control"]
+custom_minimum_size = Vector2(0, 185)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_85tfr")
+
+[node name="Base" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_34016")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardPile2D" parent="." instance=ExtResource("3_xo5s0")]
+position = Vector2(600, 450)
+pile_growth_direction = 1
