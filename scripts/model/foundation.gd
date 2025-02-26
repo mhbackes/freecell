@@ -1,6 +1,7 @@
 class_name Foundation
 extends CardPile
 
+
 func _init() -> void:
 	_max_size = 13
 	_max_cards_per_drop = 1

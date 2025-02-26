@@ -1,14 +1,5 @@
 class_name Groups
 
-static func empty(group: StringName) -> StringName:
-	return "empty_" + group
-	
-static func non_empty(group: StringName) -> StringName:
-	return "non_empty_" + group
-	
-static func full(group: StringName) -> StringName:
-	return "full_" + group
-
 const CARD_PILES: StringName = "card_piles"
 
 const CELLS: StringName = "cells"
@@ -28,3 +19,15 @@ const FULL_CASCADES: StringName = "full_cascades"
 
 const DRAGGING_CARDS: StringName = "dragging_cards"
 const MOVING_CARDS: StringName = "moving_cards"
+
+
+static func empty(group: StringName) -> StringName:
+	return "empty_" + group
+
+
+static func non_empty(group: StringName) -> StringName:
+	return "non_empty_" + group
+
+
+static func full(group: StringName) -> StringName:
+	return "full_" + group

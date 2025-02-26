@@ -1,6 +1,7 @@
 class_name Cascade
 extends CardPile
 
+
 func _init() -> void:
 	_max_size = MAX_INT
 	_max_cards_per_drop = MAX_INT
