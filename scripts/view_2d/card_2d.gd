@@ -21,7 +21,7 @@ func _enter_tree() -> void:
 
 
 func _set_initial_position() -> void:
-	var rect = get_viewport_rect()
+	var rect := get_viewport_rect()
 	position = Vector2(rect.get_center().x, rect.end.y)
 
 
@@ -57,9 +57,12 @@ func set_move_delay(delay: float) -> void:
 	_move_delay = delay
 
 
-func move_to(target):
+func move_to(target: Vector2) -> void:
+	if Engine.is_editor_hint():
+		position = target
+		return
 	start_move_animation()
-	var tween = get_tree().create_tween()
+	var tween := get_tree().create_tween()
 	tween.tween_interval(_move_delay)
 	tween.tween_property(self, "position", target, .2).set_ease(Tween.EASE_OUT).set_trans(
 		Tween.TRANS_EXPO
@@ -101,7 +104,7 @@ func victory_animation() -> void:
 	var screen_center: Vector2 = viewport_rect.get_center()
 	tween.tween_property(self, "global_position", screen_center, 0.1)
 	tween.tween_interval(randf_range(0.1, 0.4))
-	var random_pos = Vector2(
+	var random_pos := Vector2(
 		randf_range(viewport_rect.position.x, viewport_rect.end.x),
 		randf_range(viewport_rect.position.y, viewport_rect.end.y)
 	)

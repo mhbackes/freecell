@@ -93,11 +93,11 @@ func update_undo_redo_buttons() -> void:
 	enable_redo(_freecell.has_redo())
 
 
-func enable_undo(value: bool):
+func enable_undo(value: bool) -> void:
 	$AspectRatioContainer/VSplitContainer/HUD/Buttons/UndoAll.set_disabled(not value)
 	$AspectRatioContainer/VSplitContainer/HUD/Buttons/Undo.set_disabled(not value)
 
 
-func enable_redo(value: bool):
+func enable_redo(value: bool) -> void:
 	$AspectRatioContainer/VSplitContainer/HUD/Buttons/Redo.set_disabled(not value)
 	$AspectRatioContainer/VSplitContainer/HUD/Buttons/RedoAll.set_disabled(not value)

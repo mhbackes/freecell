@@ -2,15 +2,15 @@ class_name Card
 extends Node
 
 enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES }
-const MIN_RANK = 1
-const MAX_RANK = 13
+const MIN_RANK : int = 1
+const MAX_RANK : int = 13
 
 var suit: Suit
 var rank: int
 var _current_pile: CardPile = null
 
 
-func _init(r: int = 1, s: Suit = Suit.CLUBS):
+func _init(r: int = 1, s: Suit = Suit.CLUBS) -> void:
 	assert(r >= 1 and r <= 13)
 	rank = r
 	suit = s

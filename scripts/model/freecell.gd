@@ -10,6 +10,8 @@ var _cascades: Array[Cascade] = _make_cascades()
 var _foundations: Array[Foundation] = _make_foundations()
 var _undo_redo: UndoRedo = UndoRedo.new()
 
+func _exit_tree() -> void:
+	_undo_redo.free()
 
 func get_cards() -> Array[Card]:
 	return _cards
@@ -29,9 +31,9 @@ func get_foundations() -> Array[Foundation]:
 
 func _make_cards() -> Array[Card]:
 	var cards: Array[Card]
-	for suit in Card.Suit.values():
+	for suit: Card.Suit in Card.Suit.values():
 		for rank in range(Card.MIN_RANK, Card.MAX_RANK + 1):
-			var card = Card.new(rank, suit)
+			var card := Card.new(rank, suit)
 			cards.append(card)
 	return cards
 
@@ -65,8 +67,8 @@ func _make_foundations() -> Array[Foundation]:
 
 func shuffle() -> void:
 	for i in range(_cards.size()):
-		var j = randi_range(i, _cards.size() - 1)
-		var tmp = _cards[i]
+		var j := randi_range(i, _cards.size() - 1)
+		var tmp := _cards[i]
 		_cards[i] = _cards[j]
 		_cards[j] = tmp
 
@@ -93,11 +95,11 @@ func post_card_move_checks(last_moved_card: Card) -> void:
 
 func try_to_move_any_to_foundation(last_moved_card: Card) -> bool:
 	var tree: SceneTree = last_moved_card.get_tree()
-	var non_empty_piles = (
+	var non_empty_piles := (
 		tree.get_nodes_in_group(Groups.NON_EMPTY_CELLS)
 		+ tree.get_nodes_in_group(Groups.NON_EMPTY_CASCADES)
 	)
-	for pile in non_empty_piles:
+	for pile: CardPile in non_empty_piles:
 		if (
 			pile.top_card() == last_moved_card
 			or pile.top_card().is_in_group(Groups.MOVING_CARDS)
@@ -110,7 +112,7 @@ func try_to_move_any_to_foundation(last_moved_card: Card) -> bool:
 
 
 func try_to_move_to_foundation(card: Card) -> bool:
-	for foundation in get_tree().get_nodes_in_group(Groups.FOUNDATIONS):
+	for foundation: CardPile in get_tree().get_nodes_in_group(Groups.FOUNDATIONS):
 		if foundation.can_drop_card(card):
 			move_cards([card], card.current_pile(), foundation)
 			card.get_parent().play_slide_sound()

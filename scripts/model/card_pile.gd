@@ -42,7 +42,7 @@ func request_add_cards(cards: Array[Card]) -> void:
 
 
 func add_cards(cards: Array[Card]) -> void:
-	for card in cards:
+	for card: Card in cards:
 		add_card(card)
 
 
@@ -58,7 +58,7 @@ func add_card(card: Card) -> void:
 
 
 func remove_top_card() -> void:
-	var card = _held_cards.pop_back()
+	var card: Card = _held_cards.pop_back()
 	if _held_cards.is_empty():
 		add_to_group(Groups.empty(_group))
 		remove_from_group(Groups.non_empty(_group))
@@ -66,7 +66,7 @@ func remove_top_card() -> void:
 	card_removed.emit(card)
 
 
-func can_drop_card(card: Card):
+func can_drop_card(card: Card) -> bool:
 	return can_drop_cards([card])
 
 
@@ -97,10 +97,10 @@ func can_drop_bottom_card(card: Card) -> bool:
 
 
 func pickup(card: Card) -> void:
-	var start: int = _held_cards.find(card)
+	var start := _held_cards.find(card)
 	if start < 0:
 		return
-	var cards = _held_cards.slice(start)
+	var cards := _held_cards.slice(start)
 	if can_pickup(cards):
 		picked_up_cards.emit(cards)
 
@@ -119,7 +119,7 @@ func can_pickup(cards: Array[Card]) -> bool:
 
 
 func max_num_cards_moved(drop_here: bool = false) -> int:
-	var empty_target: bool = (
+	var empty_target := (
 		drop_here and _held_cards.is_empty() and not is_in_group(Groups.FOUNDATIONS)
 	)
 	var max_cards_moved: int = (num_empty_cells() + 1) * (2 ** num_empty_cascades() as int)
@@ -127,16 +127,16 @@ func max_num_cards_moved(drop_here: bool = false) -> int:
 	return max_cards_moved / 2 if empty_target else max_cards_moved
 
 
-func is_pile_color_sequence(cards: Array[Card]):
+func is_pile_color_sequence(cards: Array[Card]) -> bool:
 	for i in range(cards.size() - 1):
-		var low_card: Card = cards[i] if _order == Order.ASCENDING else cards[i + 1]
-		var high_card: Card = cards[i + 1] if _order == Order.ASCENDING else cards[i]
+		var low_card := cards[i] if _order == Order.ASCENDING else cards[i + 1]
+		var high_card := cards[i + 1] if _order == Order.ASCENDING else cards[i]
 		if not Card.is_color_sequence_match(low_card, high_card):
 			return false
 	return true
 
 
-func is_pile_alternate_color_sequence(cards: Array[Card]):
+func is_pile_alternate_color_sequence(cards: Array[Card]) -> bool:
 	for i in range(cards.size() - 1):
 		var low_card: Card = cards[i] if _order == Order.ASCENDING else cards[i + 1]
 		var high_card: Card = cards[i + 1] if _order == Order.ASCENDING else cards[i]

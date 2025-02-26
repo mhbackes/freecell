@@ -28,7 +28,7 @@ func get_cards() -> Array[Card]:
 	return c
 
 
-func _set_cards(cards) -> void:
+func _set_cards(cards: Array[Card2D]) -> void:
 	assert(not cards.is_empty())
 	_cards = cards
 	_head().connect("body_entered", _on_head_card_body_entered)
@@ -99,7 +99,7 @@ func cancel_drag() -> void:
 	_set_cards_z_index(_cards, -Z_INDEX_INCR)
 
 
-func _move_to(target) -> void:
+func _move_to(target: Vector2) -> void:
 	for i in range(_cards.size()):
 		_cards[i].move_to(target + _card_offsets[i])
 
@@ -110,18 +110,18 @@ func _head() -> Card2D:
 
 func _on_head_card_body_entered(body: Node2D) -> void:
 	if body is CardPile2D:
-		var cell = body as CardPile2D
+		var cell :CardPile2D = body
 		if cell.can_drop_cards(self):
 			_touching_cells.append(cell)
 
 
 func _on_head_card_body_exited(body: Node2D) -> void:
 	if body is CardPile2D:
-		var cell = body as CardPile2D
+		var cell: CardPile2D = body
 		cell.unhighlight()
 		_touching_cells.erase(cell)
 
 
-func _set_cards_z_index(cards: Array[Card2D], base_z_index: int):
+func _set_cards_z_index(cards: Array[Card2D], base_z_index: int) -> void:
 	for card in cards:
 		card.z_index += base_z_index
