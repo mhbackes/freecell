@@ -6,7 +6,7 @@ PROJECT_NAME="Freecell"
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("target", choices=["debug", "release"], nargs="?", default="debug")
-    parser.add_argument("arch", choices=["android", "linux"], nargs="?", default="linux")
+    parser.add_argument("arch", choices=["android", "linux", "web"], nargs="?", default="linux")
 
     args = parser.parse_args()
     print(f"Target: {args.target}, Architecture: {args.arch}")
