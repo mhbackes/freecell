@@ -10,8 +10,10 @@ var _cascades: Array[Cascade] = _make_cascades()
 var _foundations: Array[Foundation] = _make_foundations()
 var _undo_redo: UndoRedo = UndoRedo.new()
 
+
 func _exit_tree() -> void:
 	_undo_redo.free()
+
 
 func get_cards() -> Array[Card]:
 	return _cards
@@ -94,19 +96,15 @@ func post_card_move_checks(last_moved_card: Card) -> void:
 
 
 func try_to_move_any_to_foundation(last_moved_card: Card) -> bool:
+	if get_tree().has_group(Groups.MOVING_CARDS) or get_tree().has_group(Groups.DRAGGING_CARDS):
+		return false
 	var tree: SceneTree = last_moved_card.get_tree()
 	var non_empty_piles := (
 		tree.get_nodes_in_group(Groups.NON_EMPTY_CELLS)
 		+ tree.get_nodes_in_group(Groups.NON_EMPTY_CASCADES)
 	)
 	for pile: CardPile in non_empty_piles:
-		if (
-			pile.top_card() == last_moved_card
-			or pile.top_card().is_in_group(Groups.MOVING_CARDS)
-			or pile.top_card().is_in_group(Groups.DRAGGING_CARDS)
-		):
-			continue
-		if try_to_move_to_foundation(pile.top_card()):
+		if pile.top_card() != last_moved_card and try_to_move_to_foundation(pile.top_card()):
 			return true
 	return false
 

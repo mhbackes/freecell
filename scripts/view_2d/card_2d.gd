@@ -73,8 +73,7 @@ func move_to(target: Vector2) -> void:
 func start_move_animation() -> void:
 	z_index += Z_INDEX_INCR
 	_card.add_to_group(Groups.MOVING_CARDS)
-	if input_event.is_connected(_on_input_event):
-		input_event.disconnect(_on_input_event)
+	input_event.disconnect(_on_input_event)
 
 
 func end_move_animation() -> void:
@@ -86,15 +85,18 @@ func end_move_animation() -> void:
 
 
 func play_pickup_sound() -> void:
-	$PickupSound.play()
+	if not Engine.is_editor_hint():
+		$PickupSound.play()
 
 
 func play_drop_sound() -> void:
-	$DropSound.play()
+	if not Engine.is_editor_hint():
+		$DropSound.play()
 
 
 func play_slide_sound() -> void:
-	$SlideSound.play()
+	if not Engine.is_editor_hint():
+		$SlideSound.play()
 
 
 func victory_animation() -> void:

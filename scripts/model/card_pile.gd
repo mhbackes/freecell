@@ -119,9 +119,7 @@ func can_pickup(cards: Array[Card]) -> bool:
 
 
 func max_num_cards_moved(drop_here: bool = false) -> int:
-	var empty_target := (
-		drop_here and _held_cards.is_empty() and not is_in_group(Groups.FOUNDATIONS)
-	)
+	var empty_target := drop_here and _held_cards.is_empty() and not is_in_group(Groups.FOUNDATIONS)
 	var max_cards_moved: int = (num_empty_cells() + 1) * (2 ** num_empty_cascades() as int)
 	@warning_ignore("integer_division")
 	return max_cards_moved / 2 if empty_target else max_cards_moved

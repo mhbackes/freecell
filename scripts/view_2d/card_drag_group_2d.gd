@@ -110,7 +110,7 @@ func _head() -> Card2D:
 
 func _on_head_card_body_entered(body: Node2D) -> void:
 	if body is CardPile2D:
-		var cell :CardPile2D = body
+		var cell: CardPile2D = body
 		if cell.can_drop_cards(self):
 			_touching_cells.append(cell)
 

@@ -2,8 +2,8 @@ class_name Card
 extends Node
 
 enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES }
-const MIN_RANK : int = 1
-const MAX_RANK : int = 13
+const MIN_RANK: int = 1
+const MAX_RANK: int = 13
 
 var suit: Suit
 var rank: int

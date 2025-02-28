@@ -37,7 +37,7 @@ func connect_model(freecell: Freecell) -> void:
 
 func _on_cards_moved(cards: Array[Card]) -> void:
 	assert(not cards.is_empty())
-	cards.front().get_parent().move_finished.connect(
+	cards.back().get_parent().move_finished.connect(
 		_on_card_finished_moving, ConnectFlags.CONNECT_ONE_SHOT
 	)
 
@@ -56,7 +56,8 @@ func _on_victory() -> void:
 
 
 func deal() -> void:
-	$DealSound.play()
+	if not Engine.is_editor_hint():
+		$DealSound.play()
 	for i in range(_freecell._cards.size()):
 		_freecell._cards[i].get_parent().set_move_delay(0.02 * i)
 	_freecell.deal()

@@ -37,8 +37,8 @@ func _update_shape_when_control_child() -> void:
 
 
 func compute_pile_offset(dir: PileGrowthDirection) -> Vector2:
-	var pile_offset_x : float = $Highlight.texture.get_width() * .12 / scale.x
-	var pile_offset_y : float = $Highlight.texture.get_height() * .12 / scale.y
+	var pile_offset_x: float = $Highlight.texture.get_width() * .12 / scale.x
+	var pile_offset_y: float = $Highlight.texture.get_height() * .12 / scale.y
 	match dir:
 		PileGrowthDirection.STACK:
 			return Vector2.ZERO
@@ -80,7 +80,7 @@ func unhighlight() -> void:
 
 
 func _on_card_pile_card_added(card: Card) -> void:
-	var card2d :Card2D = card.get_parent()
+	var card2d: Card2D = card.get_parent()
 	card2d.z_index = $Highlight.z_index
 	card2d.reparent(self)
 	card2d.move_to(next_free_position())
