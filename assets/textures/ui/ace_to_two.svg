@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100"
+   height="100"
+   viewBox="0 0 26.458333 26.458333"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   sodipodi:docname="ace_to_two.svg"
+   inkscape:export-filename="eight_to_ten.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="true"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="4.0315405"
+     inkscape:cx="33.609981"
+     inkscape:cy="60.274727"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showborder="true" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-55.000001,-98.500001)">
+    <g
+       id="g1"
+       transform="matrix(0.43967197,0,0,0.43967197,171.87185,158.29568)">
+      <path
+         id="use294"
+         d="m -261.55889,-91.514039 h 5 m -2.7,-0.8 7.3,-29.400001 7.3,29.400001 m -2.7,0.8 h 5 m -13.4,-10.600001 h 7.6"
+         style="fill:none;stroke:#ffffff;stroke-width:3.7;stroke-linecap:square;stroke-miterlimit:1.5;stroke-opacity:1" />
+    </g>
+    <path
+       id="use289"
+       d="m 72.890462,108.69524 c 0,-1.29104 0.602483,-3.31368 3.356699,-3.31368 2.754214,0 3.356699,2.06567 3.356699,3.44278 0,3.74402 -6.713398,5.12111 -6.713398,9.25244 h 6.713398 v -2.2378"
+       style="fill:none;stroke:#ffffff;stroke-width:1.59228;stroke-linecap:square;stroke-opacity:1" />
+    <path
+       style="font-size:20.5924px;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;stroke:#ffffff;stroke-width:0.429009px"
+       d="m 70.679662,110.98784 h -4.900991 v 1.48265 h 4.900991 z"
+       id="text4"
+       aria-label="-" />
+  </g>
+</svg>

@@ -22,9 +22,9 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="0.27968246"
-     inkscape:cx="1267.5089"
-     inkscape:cy="786.60636"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="1207.3848"
+     inkscape:cy="1506.8445"
      inkscape:window-width="1920"
      inkscape:window-height="1043"
      inkscape:window-x="0"
@@ -33,6 +33,30 @@
      inkscape:current-layer="svg796" />
   <defs
      id="defs120">
+    <linearGradient
+       id="linearGradient4"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.40000001;"
+         offset="0"
+         id="stop4" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop5" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop1" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop2" />
+    </linearGradient>
     <symbol
        id="J14"
        preserveAspectRatio="none"
@@ -1248,6 +1272,26 @@
     <path
        id="star"
        d="m-158.5 1189.8a15.5 15.5 0 0 0-15.5 15.5 15.5 15.5 0 0 0 15.5 15.5 15.5 15.5 0 0 0 15.5-15.5 15.5 15.5 0 0 0-15.5-15.5zm0 3 3 8.7 9.5 0.1-7.6 5.5 2.8 8.7-7.7-5.3-7.7 5.3 2.8-8.7-7.6-5.5h9.5z" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1"
+       id="linearGradient2"
+       x1="964.49969"
+       y1="1227.8003"
+       x2="964.49969"
+       y2="1468.7998"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.0124846,0,0,1.0088748,-12.041389,-11.965886)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4"
+       id="linearGradient5"
+       x1="964.5"
+       y1="1227.8"
+       x2="964.5"
+       y2="1468.8"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.0124846,0,0,1.0088748,-12.041389,-11.965886)" />
   </defs>
   <g
      id="joker_red">
@@ -6312,4 +6356,8 @@
        xlink:href="#ad"
        id="use796" />
   </g>
+  <path
+     id="use1"
+     d="m 857.00007,1180.8001 c -6.64798,0 -11.99999,5.3522 -11.99999,12.0001 v 310.9999 c 0,6.6479 5.35201,11.9999 11.99999,11.9999 H 1072 c 6.648,0 11.9999,-5.352 11.9999,-11.9999 v -310.9999 c 0,-6.6479 -5.3519,-12.0001 -11.9999,-12.0001 z"
+     style="fill:url(#linearGradient5);fill-opacity:1;stroke:url(#linearGradient2);stroke-width:2.00015;stroke-dasharray:none" />
 </svg>

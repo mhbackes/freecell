@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100"
+   height="100"
+   viewBox="0 0 26.458333 26.458333"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   sodipodi:docname="jack_to_king.svg"
+   inkscape:export-filename="eight_to_ten.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="true"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.4253648"
+     inkscape:cx="-72.61299"
+     inkscape:cy="20.345669"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showborder="true" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-55.000001,-98.500001)">
+    <path
+       style="font-size:20.5924px;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;stroke:#ffffff;stroke-width:0.429009px"
+       d="m 70.679662,110.98784 h -4.900991 v 1.48265 h 4.900991 z"
+       id="text3"
+       aria-label="-" />
+    <path
+       id="use150"
+       d="m 56.852005,105.40127 h 2.61696 m -1.28704,0.21452 v 12.22677 m -1.32992,0.21451 h 2.61696 m 2.48825,-12.6558 h 2.23085 m -0.94382,0.30032 -4.84781,8.1512 m 3.56078,4.20428 h 2.23085 m -0.94382,-0.30032 -2.65986,-6.99285"
+       style="stroke:#ffffff;stroke-width:1.58734;stroke-linecap:square;stroke-opacity:1" />
+    <path
+       id="use190"
+       d="m 76.86067,105.48916 h 2.74566 m -1.37285,0.21452 v 9.52402 a 2.7456632,2.7456632 0 0 1 -5.49132,0 v -0.42902"
+       style="fill:none;stroke:#ffffff;stroke-width:1.58734;stroke-linecap:square;stroke-opacity:1" />
+  </g>
+</svg>

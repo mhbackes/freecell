@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2gt72ppc00lt"]
 
-[ext_resource type="Script" path="res://scripts/view_2d/card_pile_2d.gd" id="1_1hxgo"]
+[ext_resource type="Script" uid="uid://n7lqg75j5tce" path="res://scripts/view_2d/card_pile_2d.gd" id="1_1hxgo"]
 [ext_resource type="Texture2D" uid="uid://5aw7uxph3pvl" path="res://assets/textures/cards/anglo_poker.svg" id="2_264qu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8vqpl"]

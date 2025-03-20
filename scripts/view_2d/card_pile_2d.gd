@@ -30,7 +30,8 @@ func model() -> CardPile:
 
 func _update_shape_when_control_child() -> void:
 	var parent_size: Vector2 = get_parent().size
-	var s: float = max(parent_size.x / 1200.0, parent_size.y / 900.0)
+	var viewport_size: Vector2 = get_viewport_rect().size
+	var s: float = max(parent_size.x / viewport_size.x, parent_size.y / viewport_size.y)
 	self.scale = Vector2(s, s)
 	self.global_position = get_parent().get_global_rect().get_center()
 	_pile_offset = compute_pile_offset(pile_growth_direction)

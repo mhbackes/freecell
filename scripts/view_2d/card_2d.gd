@@ -22,7 +22,7 @@ func _enter_tree() -> void:
 
 func _set_initial_position() -> void:
 	var rect := get_viewport_rect()
-	position = Vector2(rect.get_center().x, rect.end.y)
+	global_position = Vector2(rect.get_center().x, rect.end.y)
 
 
 func connect_model(card: Card) -> void:
@@ -36,8 +36,8 @@ func model() -> Card:
 
 
 func _set_card_texture(rank: int, suit: Card.Suit) -> void:
-	$Sprite2D.texture.resource_local_to_scene = true
-	$Sprite2D.texture.region = Rect2((rank - 1) * 241, suit * 336.8 - 0.2, 241, 337)
+	$CardSprite2D.texture.resource_local_to_scene = true
+	$CardSprite2D.texture.region = Rect2((rank - 1) * 241, suit * 336.8 - 0.2, 241, 337)
 
 
 func _on_input_event(viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -97,6 +97,18 @@ func play_drop_sound() -> void:
 func play_slide_sound() -> void:
 	if not Engine.is_editor_hint():
 		$SlideSound.play()
+
+
+func start_fade() -> void:
+	var tween := create_tween().set_parallel()
+	tween.tween_property($FadeSprite2D, "modulate:a", 1, .2)
+	tween.tween_property($CardSprite2D, "modulate:a", 0.05, .2)
+
+
+func stop_fade() -> void:
+	var tween := create_tween().set_parallel()
+	tween.tween_property($CardSprite2D, "modulate:a", 1, .2)
+	tween.tween_property($FadeSprite2D, "modulate:a", 0, .2)
 
 
 func victory_animation() -> void:

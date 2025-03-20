@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bohkfro1d8taw"
-path="res://.godot/imported/STANDARD--COLOR_52_FACES_(FOR_PRINTING).svg-440a14ad053a9d83e5bce3ecc324bfef.ctex"
+uid="uid://cp0d7pk7ehavb"
+path="res://.godot/imported/ace_to_two.svg-11c3315fcf62d31022d585e2a83b2941.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/STANDARD--COLOR_52_FACES_(FOR_PRINTING).svg"
-dest_files=["res://.godot/imported/STANDARD--COLOR_52_FACES_(FOR_PRINTING).svg-440a14ad053a9d83e5bce3ecc324bfef.ctex"]
+source_file="res://assets/textures/ui/ace_to_two.svg"
+dest_files=["res://.godot/imported/ace_to_two.svg-11c3315fcf62d31022d585e2a83b2941.ctex"]
 
 [params]
 

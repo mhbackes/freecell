@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bucr21o3na66x"]
 
 [ext_resource type="Texture2D" uid="uid://5aw7uxph3pvl" path="res://assets/textures/cards/anglo_poker.svg" id="2_00yr0"]
-[ext_resource type="Script" path="res://scripts/view_2d/cascade_2d.gd" id="2_85tfr"]
+[ext_resource type="Script" uid="uid://7d7mn4d75vsa" path="res://scripts/view_2d/cascade_2d.gd" id="2_85tfr"]
 [ext_resource type="PackedScene" uid="uid://c2gt72ppc00lt" path="res://scenes/card_pile_2d.tscn" id="3_xo5s0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34016"]
@@ -36,5 +36,6 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="CardPile2D" parent="." instance=ExtResource("3_xo5s0")]
-position = Vector2(600, 450)
+position = Vector2(800, 450)
+scale = Vector2(1.62162, 1.62162)
 pile_growth_direction = 1

@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name Freecell2DNew
 extends Control
 
@@ -95,10 +95,32 @@ func update_undo_redo_buttons() -> void:
 
 
 func enable_undo(value: bool) -> void:
-	$AspectRatioContainer/VSplitContainer/HUD/Buttons/UndoAll.set_disabled(not value)
-	$AspectRatioContainer/VSplitContainer/HUD/Buttons/Undo.set_disabled(not value)
+	$VSplitContainer/HUDLeft/Buttons/UndoAll.set_disabled(not value)
+	$VSplitContainer/HUDLeft/Buttons/Undo.set_disabled(not value)
 
 
 func enable_redo(value: bool) -> void:
-	$AspectRatioContainer/VSplitContainer/HUD/Buttons/Redo.set_disabled(not value)
-	$AspectRatioContainer/VSplitContainer/HUD/Buttons/RedoAll.set_disabled(not value)
+	$VSplitContainer/HUDLeft/Buttons/Redo.set_disabled(not value)
+	$VSplitContainer/HUDLeft/Buttons/RedoAll.set_disabled(not value)
+
+
+func highlight_cards_in_range(low_rank: int, high_rank: int) -> void:
+	start_fade_cards(find_cards_outside_range(low_rank, high_rank))
+
+
+func find_cards_outside_range(low_rank: int, high_rank: int) -> Array[Card2D]:
+	var cards: Array[Card2D]
+	for card in _cards:
+		if card.model().rank < low_rank or card.model().rank > high_rank:
+			cards.append(card)
+	return cards
+
+
+func start_fade_cards(cards: Array[Card2D]) -> void:
+	for card in cards:
+		card.start_fade()
+
+
+func stop_fade_cards() -> void:
+	for card in _cards:
+		card.stop_fade()
