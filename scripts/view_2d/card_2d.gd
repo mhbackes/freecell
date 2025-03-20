@@ -118,8 +118,12 @@ func victory_animation() -> void:
 	var screen_center: Vector2 = viewport_rect.get_center()
 	tween.tween_property(self, "global_position", screen_center, 0.1)
 	tween.tween_interval(randf_range(0.1, 0.4))
-	var random_pos := Vector2(
+	var random_position := Vector2(
 		randf_range(viewport_rect.position.x, viewport_rect.end.x),
 		randf_range(viewport_rect.position.y, viewport_rect.end.y)
 	)
-	tween.tween_property(self, "global_position", random_pos, randf_range(0.2, 0.4))
+	var random_rotation := randf_range(0, 2 * PI)
+	var random_duration := randf_range(0.2, 0.5)
+	tween.set_parallel()
+	tween.tween_property(self, "global_position", random_position, random_duration)
+	tween.tween_property(self, "global_rotation", random_rotation, random_duration)
