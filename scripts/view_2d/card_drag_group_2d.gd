@@ -11,6 +11,7 @@ var _pickup_position: Vector2
 var _pickup_z_index: int
 var _touching_cells: Array[CardPile2D]
 var _closest_touching_cell: CardPile2D = null
+var _enabled: bool = true
 
 
 func _init(cards: Array[Card2D]) -> void:
@@ -46,10 +47,13 @@ func _set_cards(cards: Array[Card2D]) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not _enabled:
+		return
 	if event.is_action_released("click"):
 		_on_click_release()
 	if event is InputEventMouseMotion:
 		_follow_cursor()
+	get_viewport().set_input_as_handled()
 
 
 func _on_click_release() -> void:
@@ -60,7 +64,7 @@ func _on_click_release() -> void:
 	_head().play_drop_sound()
 	for card in get_cards():
 		card.remove_from_group(Groups.DRAGGING_CARDS)
-	self.queue_free()
+	_finish()
 
 
 func _follow_cursor() -> void:
@@ -125,3 +129,8 @@ func _on_head_card_body_exited(body: Node2D) -> void:
 func _set_cards_z_index(cards: Array[Card2D], base_z_index: int) -> void:
 	for card in cards:
 		card.z_index += base_z_index
+
+
+func _finish() -> void:
+	_enabled = false
+	queue_free()
