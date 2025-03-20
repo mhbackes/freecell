@@ -72,14 +72,16 @@ func move_to(target: Vector2) -> void:
 func start_move_animation() -> void:
 	z_index += Z_INDEX_INCR
 	_card.add_to_group(Groups.MOVING_CARDS)
-	input_event.disconnect(_on_input_event)
+	if input_event.is_connected(_on_input_event):
+		input_event.disconnect(_on_input_event)
 
 
 func end_move_animation() -> void:
 	if z_index >= Z_INDEX_INCR:
 		z_index -= Z_INDEX_INCR
 	_card.remove_from_group(Groups.MOVING_CARDS)
-	input_event.connect(_on_input_event)
+	if not input_event.is_connected(_on_input_event):
+		input_event.connect(_on_input_event)
 	move_finished.emit(_card)
 
 
