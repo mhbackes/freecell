@@ -149,3 +149,13 @@ func num_empty_cascades() -> int:
 
 func num_empty_cells() -> int:
 	return get_tree().get_node_count_in_group(Groups.EMPTY_CELLS)
+
+
+func highest_card() -> Card:
+	if _held_cards.is_empty():
+		return null
+	var highest: Card = _held_cards.front()
+	for card in _held_cards:
+		if card.rank > highest.rank:
+			highest = card
+	return highest

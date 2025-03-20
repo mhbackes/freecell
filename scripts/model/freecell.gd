@@ -142,3 +142,26 @@ func redo() -> void:
 func redo_all() -> void:
 	while _undo_redo.has_redo():
 		_undo_redo.redo()
+
+
+func find_next_foundation_cards() -> Array[Card]:
+	var highest_per_suit: Dictionary[Card.Suit, Card]
+	for f in _foundations:
+		var highest := f.highest_card()
+		if highest != null:
+			highest_per_suit[highest.suit] = highest
+	var next_cards: Array[Card]
+	for s: Card.Suit in Card.Suit.values():
+		if not s in highest_per_suit:
+			next_cards.append(find_card(1, s))
+		else:
+			var card: Card = highest_per_suit[s]
+			next_cards.append(find_card(card.rank + 1, s))
+	return next_cards
+
+
+func find_card(rank: int, suit: Card.Suit) -> Card:
+	var idx := _cards.find_custom(func(x: Card) -> bool: return x.rank == rank and x.suit == suit)
+	if idx >= 0:
+		return _cards[idx]
+	return null

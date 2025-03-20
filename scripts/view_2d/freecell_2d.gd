@@ -107,6 +107,15 @@ func highlight_cards_in_range(low_rank: int, high_rank: int) -> void:
 	start_fade_cards(find_cards_outside_range(low_rank, high_rank))
 
 
+func highlight_next_foundation_cards() -> void:
+	var next_foundation_cards := _freecell.find_next_foundation_cards()
+	var cards: Array[Card2D]
+	for card in _cards:
+		if not card.model() in next_foundation_cards:
+			cards.append(card)
+	start_fade_cards(cards)
+
+
 func find_cards_outside_range(low_rank: int, high_rank: int) -> Array[Card2D]:
 	var cards: Array[Card2D]
 	for card in _cards:

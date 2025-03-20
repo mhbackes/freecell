@@ -1,13 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://dyfl4b041pelp"]
+[gd_scene load_steps=26 format=3 uid="uid://dyfl4b041pelp"]
 
 [ext_resource type="Script" uid="uid://41tngn684gw8" path="res://scripts/view_2d/freecell_2d.gd" id="1_pmwy7"]
 [ext_resource type="Texture2D" uid="uid://cd71356p40e41" path="res://assets/textures/ui/plus.png" id="2_tff4g"]
 [ext_resource type="Script" uid="uid://dtdudkehrp1c4" path="res://scripts/long_press_button.gd" id="3_8i2fu"]
 [ext_resource type="Texture2D" uid="uid://dpi1mpku40u5k" path="res://assets/textures/ui/rewind.png" id="3_tsxa6"]
 [ext_resource type="AudioStream" uid="uid://b38058w8hfc8a" path="res://assets/sounds/ui/Modern3.ogg" id="4_cbl04"]
-[ext_resource type="Texture2D" uid="uid://ds33kc7grt2vc" path="res://assets/textures/ui/left.png" id="5_oxily"]
-[ext_resource type="Texture2D" uid="uid://42hap886pswg" path="res://assets/textures/ui/right.png" id="6_womye"]
+[ext_resource type="Texture2D" uid="uid://bu6rmt4ht5k16" path="res://assets/textures/ui/previous.png" id="6_i2ty1"]
 [ext_resource type="AudioStream" uid="uid://dntonf4s7f0s5" path="res://assets/sounds/ui/Modern4.ogg" id="7_3fkrd"]
+[ext_resource type="Texture2D" uid="uid://bwiow7wpt00ct" path="res://assets/textures/ui/next.png" id="7_8or7f"]
 [ext_resource type="Texture2D" uid="uid://chjxmjmj3ixk3" path="res://assets/textures/ui/fastForward.png" id="8_i6q48"]
 [ext_resource type="Texture2D" uid="uid://l5k5ti6n7kf2" path="res://assets/textures/ui/gear.png" id="9_1uh5b"]
 [ext_resource type="PackedScene" uid="uid://b6kjw4x668twt" path="res://scenes/cell_2d.tscn" id="10_v45on"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://b8h8lscii48ns" path="res://assets/sounds/cards/card-fan-2.ogg" id="13_g6556"]
 [ext_resource type="Texture2D" uid="uid://cp0d7pk7ehavb" path="res://assets/textures/ui/ace_to_two.svg" id="14_2cmkv"]
 [ext_resource type="AudioStream" uid="uid://dhjma3m6ug1os" path="res://assets/sounds/tada-fanfare-a-6313.mp3" id="14_afydu"]
+[ext_resource type="Texture2D" uid="uid://ukek1gjg1rw4" path="res://assets/textures/ui/upRight.png" id="14_hmrbo"]
 [ext_resource type="Texture2D" uid="uid://didjs11qqd4nb" path="res://assets/textures/ui/three_to_four.svg" id="15_2cmkv"]
 [ext_resource type="Texture2D" uid="uid://dg0b5xsw6txva" path="res://assets/textures/ui/five_to_seven.svg" id="16_2cmkv"]
 [ext_resource type="Texture2D" uid="uid://di0yeiwxuncpg" path="res://assets/textures/ui/eight_to_ten.svg" id="17_2cmkv"]
@@ -107,7 +108,7 @@ size_flags_vertical = 4
 focus_mode = 0
 disabled = true
 shortcut = SubResource("Shortcut_w8w44")
-icon = ExtResource("5_oxily")
+icon = ExtResource("6_i2ty1")
 icon_alignment = 1
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="VSplitContainer/HUDLeft/Buttons/Undo"]
@@ -121,7 +122,7 @@ size_flags_vertical = 4
 focus_mode = 0
 disabled = true
 shortcut = SubResource("Shortcut_u15g7")
-icon = ExtResource("6_womye")
+icon = ExtResource("7_8or7f")
 icon_alignment = 1
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="VSplitContainer/HUDLeft/Buttons/Redo"]
@@ -296,6 +297,14 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="NextFoundationCards" type="Button" parent="VSplitContainer/HUDRight/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+icon = ExtResource("14_hmrbo")
+icon_alignment = 1
+
 [node name="OneToTwo" type="Button" parent="VSplitContainer/HUDRight/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -338,14 +347,6 @@ shortcut = SubResource("Shortcut_w8w44")
 icon = ExtResource("18_2cmkv")
 icon_alignment = 1
 
-[node name="Options" type="Button" parent="VSplitContainer/HUDRight/Buttons"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-icon = ExtResource("9_1uh5b")
-icon_alignment = 1
-
 [node name="DealSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_g6556")
 volume_db = 10.0
@@ -364,6 +365,8 @@ stream = ExtResource("14_afydu")
 [connection signal="pressed" from="VSplitContainer/HUDLeft/Buttons/Redo" to="VSplitContainer/HUDLeft/Buttons/Redo/Sound" method="play" binds= [0.0]]
 [connection signal="pressed" from="VSplitContainer/HUDLeft/Buttons/RedoAll" to="." method="redo_all"]
 [connection signal="pressed" from="VSplitContainer/HUDLeft/Buttons/RedoAll" to="VSplitContainer/HUDLeft/Buttons/RedoAll/Sound" method="play" binds= [0.0]]
+[connection signal="button_down" from="VSplitContainer/HUDRight/Buttons/NextFoundationCards" to="." method="highlight_next_foundation_cards"]
+[connection signal="button_up" from="VSplitContainer/HUDRight/Buttons/NextFoundationCards" to="." method="stop_fade_cards"]
 [connection signal="button_down" from="VSplitContainer/HUDRight/Buttons/OneToTwo" to="." method="highlight_cards_in_range" binds= [1, 2]]
 [connection signal="button_up" from="VSplitContainer/HUDRight/Buttons/OneToTwo" to="." method="stop_fade_cards"]
 [connection signal="button_down" from="VSplitContainer/HUDRight/Buttons/ThreeToFour" to="." method="highlight_cards_in_range" binds= [3, 4]]
