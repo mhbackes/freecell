@@ -1,4 +1,3 @@
-@tool
 class_name Cascade2D
 extends Control
 

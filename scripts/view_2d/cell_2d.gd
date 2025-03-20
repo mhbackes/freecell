@@ -1,4 +1,3 @@
-@tool
 class_name Cell2D
 extends Control
 

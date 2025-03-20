@@ -1,4 +1,3 @@
-@tool
 class_name CardPile2D
 extends StaticBody2D
 
