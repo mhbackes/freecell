@@ -59,6 +59,7 @@ jobs:
         with:
           allowUpdates: true
           artifacts: 'build/debug/linux/Linux.zip'
+          contents: write
           omitNameDuringUpdate: true
           omitBodyDuringUpdate: true
           token: ${{ secrets.GITHUB_TOKEN }}
