@@ -51,15 +51,30 @@ jobs:
           cd build/debug/linux/
           zip Linux.zip ./*
 
-      - name: Publish Release
-        uses: ncipollo/release-action@v1
+      - name: Create Release
         if: >
           github.event_name == 'push' &&
           github.ref_type == 'tag'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          allowUpdates: true
-          artifacts: 'build/debug/linux/Linux.zip'
-          contents: write
-          omitNameDuringUpdate: true
-          omitBodyDuringUpdate: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ github.ref }}
+          release_name: Linux
+          draft: false
+          prerelease: true
+
+      - name: Upload Release Asset
+        if: >
+          github.event_name == 'push' &&
+          github.ref_type == 'tag'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/debug/linux/Linux.zip
+          asset_name: Linux.zip
+          asset_content_type: application/zip
+
+
