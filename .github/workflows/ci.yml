@@ -1,0 +1,64 @@
+name: Continuous Integration
+
+on:
+  [push, pull_request]
+
+env:
+  GODOT_VERSION: 4.5.0-dev.1
+
+jobs:
+  build-linux:
+    name: Build Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Godot - Setup
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          use-dotnet: false
+          include-templates: true
+
+      - name: Copy export_presets.cfg
+        shell: bash
+        run: cp .github/dist/export_presets.cfg .
+
+      - name: Godot - Import Assets
+        shell: bash
+        run: godot --headless --import
+
+      - name: Make build path
+        shell: bash
+        run: mkdir -p build/debug/linux
+
+      - name: Godot - Export Linux
+        shell: bash
+        run: godot --headless --export-release linux
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-artifacts
+          path: build/debug/linux/
+
+      - name: Compress Project
+        if: >
+          github.event_name == 'push' &&
+          github.ref_type == 'tag'
+        run: |
+          cd build/debug/linux/
+          zip Linux.zip ./*
+
+      - name: Publish Release
+        uses: ncipollo/release-action@v1
+        if: >
+          github.event_name == 'push' &&
+          github.ref_type == 'tag'
+        with:
+          allowUpdates: true
+          artifacts: 'build/debug/linux/Linux.zip'
+          omitNameDuringUpdate: true
+          omitBodyDuringUpdate: true
+          token: ${{ secrets.GITHUB_TOKEN }}
