@@ -25,6 +25,11 @@ jobs:
             export-type: release
             export-path: build/windows
 
+          - name: Android
+            export-preset: android
+            export-type: debug
+            export-path: build/android
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
