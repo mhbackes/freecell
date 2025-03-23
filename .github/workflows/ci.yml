@@ -7,11 +7,24 @@ env:
   GODOT_VERSION: 4.5.0-dev.1
 
 jobs:
-  build-linux:
-    name: Build Linux
+  build-all:
+    name: Build-${{ matrix.name }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    strategy:
+      matrix:
+        include:
+          - name: Linux
+            export-preset: linux
+            export-type: release
+            export-path: build/linux
+
+          - name: Windows
+            export-preset: windows
+            export-type: release
+            export-path: build/windows
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,57 +40,54 @@ jobs:
         shell: bash
         run: cp .github/dist/export_presets.cfg .
 
-      - name: Godot - Import Assets
+      - name: Godot Import Assets
         shell: bash
         run: godot --headless --import
 
       - name: Make build path
         shell: bash
-        run: mkdir -p build/debug/linux
+        run: |
+          mkdir -p ${{ matrix.export-path }}
+          ls -lah ${{ matrix.export-path }}
 
-      - name: Godot - Export Linux
+      - name: Godot Export ${{ matrix.name }}
         shell: bash
-        run: godot --headless --export-release linux
+        run: godot --headless --export-${{ matrix.export-type }} "${{ matrix.export-preset }}"
 
       - name: Upload Artifacts
+        if: ( !env.ACT )
         uses: actions/upload-artifact@v4
         with:
-          name: linux-artifacts
-          path: build/debug/linux/
+          name: ${{ matrix.name }}-artifacts
+          path: ${{ matrix.export-path }}
 
       - name: Compress Project
-        if: >
-          github.event_name == 'push' &&
-          github.ref_type == 'tag'
+        if: ( !env.ACT && startsWith(github.ref, 'refs/tags/') )
         run: |
-          cd build/debug/linux/
-          zip Linux.zip ./*
+          cd ${{ matrix.export-path }}
+          zip Freecell-${{ matrix.name }}.zip ./*
 
       - name: Create Release
-        if: >
-          github.event_name == 'push' &&
-          github.ref_type == 'tag'
+        if: ( !env.ACT && startsWith(github.ref, 'refs/tags/') )
         uses: actions/create-release@v1
         id: create_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Linux
+          tag_name: ${{ github.ref_name }}
+          release_name: ${{ matrix.name }}
           draft: false
-          prerelease: true
+          prerelease: false
 
       - name: Upload Release Asset
-        if: >
-          github.event_name == 'push' &&
-          github.ref_type == 'tag'
+        if: ( !env.ACT && startsWith(github.ref, 'refs/tags/') )
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/debug/linux/Linux.zip
-          asset_name: Linux.zip
+          asset_path: ${{ matrix.export-path }}/Freecell-${{ matrix.name }}.zip
+          asset_name: Freecell-${{ matrix.name }}.zip
           asset_content_type: application/zip
 
 
